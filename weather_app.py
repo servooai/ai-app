@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # OpenWeatherMap API configuration
-API_KEY = os.getenv('OPENWEATHER_API_KEY', 'your_api_key_here')
+API_KEY = os.getenv('OPENWEATHER_API_KEY', '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')
 BASE_URL = 'https://api.openweathermap.org/data/2.5'
 
 def get_current_weather(city):
