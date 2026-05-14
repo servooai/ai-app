@@ -6,7 +6,7 @@ import re
 app = Flask(__name__)
 CORS(app)
 
-# ✅ اعمل instance مرة واحدة
+# ✅ اعمل instance مرة واحدة فقط
 ytt_api = YouTubeTranscriptApi()
 
 def extract_video_id(url):
@@ -31,7 +31,7 @@ def get_transcript():
         return jsonify({'error': 'Invalid video ID'}), 400
 
     try:
-        # ✅ استخدم instance.fetch() بدل YouTubeTranscriptApi.fetch()
+        # ✅ استخدم ytt_api.fetch() مش YouTubeTranscriptApi.fetch()
         transcript = ytt_api.fetch(video_id, languages=['en', 'es', 'de', 'fr', 'pt', 'it'])
         
         formatted = []
@@ -53,7 +53,7 @@ def get_transcript():
 
 @app.route('/health', methods=['GET'])
 def health():
-    return jsonify({'status': 'ok', 'service': 'YouTube Transcript API'})
+    return jsonify({'status': 'ok'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
